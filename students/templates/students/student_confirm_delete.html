@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Подтверждение удаления студента</title>
+</head>
+<body>
+    <h1>Вы уверены, что хотите удалить студента "{{ student.name }} {{ student.surname }}"?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Удалить</button>
+    </form>
+</body>
+</html>

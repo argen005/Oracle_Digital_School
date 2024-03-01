@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Поиск учеников</title>
+</head>
+<body>
+    <h2>Поиск учеников</h2>
+    <form method="get">
+        <input type="text" name="query" placeholder="Поиск..." value="{{ query }}">
+        <button type="submit">Найти</button>
+    </form>
+    {% if students %}
+        <h3>Результаты поиска:</h3>
+        <ul>
+            {% for student in students %}
+                <li>{{ student.name }} {{ student.surname }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        {% if query %}
+            <p>Студент с именем или фамилией "{{ query }}" не найден.</p>
+        {% endif %}
+    {% endif %}
+</body>
+</html>

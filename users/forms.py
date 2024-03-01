@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import Teacher
 
 class TeacherRegistrationForm(UserCreationForm):
@@ -10,3 +10,8 @@ class TeacherRegistrationForm(UserCreationForm):
     class Meta:
         model = Teacher
         fields = ['username', 'phone', 'clas', 'subject', 'password1', 'password2']
+
+class TeacherAuthenticationForm(AuthenticationForm):
+    class Meta:
+        model = Teacher
+        fields = ['username', 'password']

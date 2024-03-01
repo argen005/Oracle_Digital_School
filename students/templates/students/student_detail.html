@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Информация о студенте</title>
+</head>
+<body>
+    <h1>Информация о студенте</h1>
+    <p>Имя: {{ student.name }}</p>
+    <p>Фамилия: {{ student.surname }}</p>
+    <p>Email: {{ student.email }}</p>
+    <p>Дата рождения: {{ student.birthday }}</p>
+    <p>Адрес: {{ student.adress }}</p>
+    <p>Пол: {{ student.get_gender_display }}</p>
+</body>
+</html>

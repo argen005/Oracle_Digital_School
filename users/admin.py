@@ -3,7 +3,7 @@ from .models import Student, Teacher, ClassRoom, School
 
 @admin.register(Student)
 class StundentAdmin(admin.ModelAdmin):
-    list_display = ('name', 'surname', 'birthday', 'gender', 'email')
+    list_display = ('id', 'name', 'surname', 'birthday', 'gender', 'email')
 
 @admin.register(Teacher)
 class TeacherAdmin(admin.ModelAdmin):
