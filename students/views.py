@@ -1,4 +1,7 @@
+from django.conf import settings
+from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404, redirect
+from django.template.loader import render_to_string
 from django.views import View
 from users.models import Student
 from .forms import StudentForm
@@ -21,7 +24,14 @@ class StudentCreateView(View):
     def post(self, request):
         form = StudentForm(request.POST)
         if form.is_valid():
-            form.save()
+            new_student = form.save()
+
+            subject = 'Добро пожаловать!'
+            message = f'Дорогой {new_student.name},\n\nДобро пожаловать в нашу школу!'
+            from_email = settings.EMAIL_HOST_USER
+            to_email = [new_student.email]
+            send_mail(subject, message, from_email, to_email)
+
             return redirect('student_list')
         return render(request, 'students/student_form.html', {'form': form})
 
