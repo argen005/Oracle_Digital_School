@@ -18,7 +18,9 @@ class TeacherRegistrationView(View):
         form = TeacherRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse('Teacher registration successful.')
+            return HttpResponse("Вы успешно зарегистрировались.<br>"
+                                "<a href='/students/home/'>Вернуться на главную страницу</a><br>"
+                                "<a href='/users/login/'>Войти в личный кабинет</a>")
         return render(request, 'users/register_teacher.html', {'form': form})
 
 
@@ -35,9 +37,14 @@ class SearchStudentsView(View):
         return render(request, 'users/search_students.html', {'students': students, 'query': query})
 
 
-def teacher_login(request):
-    if request.method == 'POST':
-        form = TeacherAuthenticationForm(request, data=request.POST)
+
+class TeacherLoginView(View):
+    def get(self, request):
+        form = TeacherAuthenticationForm()
+        return render(request, 'users/teacher_login.html', {'form': form})
+
+    def post(self, request):
+        form = TeacherAuthenticationForm(data=request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
             try:
@@ -47,24 +54,22 @@ def teacher_login(request):
             password = form.cleaned_data.get('password')
             if teacher.check_password(password):
                 return HttpResponse('Вы вошли в систему')
-    else:
-        form = TeacherAuthenticationForm()
-    return render(request, 'users/teacher_login.html', {'form': form})
+        return HttpResponse('Неверный логин или пароль')
 
-class TeacherLogin(TemplateView):
-    template_name = 'users/teacher_login.html'
-    form_class = TeacherAuthenticationForm
-
-    def get_context_data(self, **kwargs):
-        form = self.form_class
-        return {'form': form}
-
-    def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('home')
+# class TeacherLogin(TemplateView):
+#     template_name = 'users/teacher_login.html'
+#     form_class = TeacherAuthenticationForm
+#
+#     def get_context_data(self, **kwargs):
+#         form = self.form_class
+#         return {'form': form}
+#
+#     def post(self, request, *args, **kwargs):
+#         form = self.form_class(request.POST)
+#         if form.is_valid():
+#             username = form.cleaned_data.get('username')
+#             password = form.cleaned_data.get('password')
+#             user = authenticate(request, username=username, password=password)
+#             if user is not None:
+#                 login(request, user)
+#                 return redirect('home')

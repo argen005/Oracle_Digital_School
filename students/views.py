@@ -58,4 +58,9 @@ class StudentDeleteView(View):
     def post(self, request, pk):
         student = get_object_or_404(Student, pk=pk)
         student.delete()
-        return redirect('student_list')
+        return HttpResponse("Студент успешно удален. "
+                            "<a href='/students/home/'>Вернуться на главную страницу</a>")
+
+
+def home(request):
+    return render(request, 'students/home.html')

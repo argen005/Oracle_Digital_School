@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Главная страница</title>
+</head>
+<body>
+    <h1>Главное меню</h1>
+    <ul>
+        <li><a href="{% url 'register_teacher' %}">Регистрация учителя</a></li>
+        <li><a href="{% url 'students:student_list' %}">Список студентов</a></li>
+        <li><a href="{% url 'teacher_login' %}">Вход для учителя</a></li>
+        <li><a href="{% url 'students:student_create' %}">Добавить студента</a></li>
+    </ul>
+</body>
+</html>

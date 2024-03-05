@@ -10,5 +10,6 @@
             <li><a href="{% url 'students:student_detail' pk=student.pk %}">{{ student.name }} {{ student.surname }}</a></li>
         {% endfor %}
     </ul>
+    <a href="{% url 'students:home' %}">Вернуться в главное меню</a>
 </body>
 </html>

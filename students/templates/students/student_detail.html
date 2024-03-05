@@ -11,5 +11,6 @@
     <p>Дата рождения: {{ student.birthday }}</p>
     <p>Адрес: {{ student.adress }}</p>
     <p>Пол: {{ student.get_gender_display }}</p>
+    <a href="{% url 'students:home' %}">Вернуться в главное меню</a>
 </body>
 </html>
