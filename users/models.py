@@ -10,10 +10,10 @@ from school import settings
 class Student(models.Model):
     name = models.CharField(verbose_name='Имя', max_length=50)
     surname = models.CharField(verbose_name='Фамилия', max_length=50)
-    fathername = models.CharField(verbose_name='Отчество', max_length=50, blank=True, null=True)
+    father_name = models.CharField(verbose_name='Отчество', max_length=50, blank=True, null=True)
     email = models.EmailField(verbose_name='Email', unique=True, null=True, blank=True)
     birthday = models.DateField(verbose_name='Дата рождения')
-    adress = models.CharField(verbose_name='Адрес', max_length=200)
+    address = models.CharField(verbose_name='Адрес', max_length=200)
     gender = models.CharField(max_length=1, choices=[('M', 'Male'), ('Ж', 'Female')])
     photo = models.ImageField(verbose_name='Фото', upload_to='photos/%Y/%m/%d/', blank=True, null=True)
 
