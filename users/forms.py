@@ -9,7 +9,7 @@ class TeacherRegistrationForm(UserCreationForm):
 
     class Meta:
         model = Teacher
-        fields = ['username', 'phone', 'clas', 'subject', 'password1', 'password2']
+        fields = ['username', 'phone', 'class_', 'subject', 'password1', 'password2']
 
 from django import forms
 from .models import Teacher

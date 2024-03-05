@@ -36,8 +36,7 @@ def send_email(sender, instance, created, **kwargs):
 
 class Teacher(AbstractUser):
     phone = models.CharField(verbose_name='Номер телефона', max_length=20, unique=True)
-    clas = models.CharField(verbose_name='Класс', max_length=10)
-    groups = models.ManyToManyField('auth.Group', related_name='teachers_groups')
+    class_ = models.CharField(verbose_name='Класс', max_length=10)
     subject = models.CharField(verbose_name='Предмет', max_length=50)
 
     def __str__(self):
