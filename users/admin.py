@@ -7,7 +7,7 @@ class StundentAdmin(admin.ModelAdmin):
 
 @admin.register(Teacher)
 class TeacherAdmin(admin.ModelAdmin):
-    list_display = ('username', 'subject', 'clas', 'phone')
+    list_display = ('subject', 'class_number', 'phone')
 
 @admin.register(ClassRoom)
 class ClassRoomAdmin(admin.ModelAdmin):

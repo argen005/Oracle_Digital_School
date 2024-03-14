@@ -33,7 +33,8 @@ class StudentCreateView(View):
             # to_email = [new_student.email]
             # send_mail(subject, message, from_email, to_email)
 
-            return HttpResponse('Студент успешно создан')
+            return HttpResponse("Студент успешно создан.<br>"
+                                "<a href='/students/home/'>Вернуться на главную страницу</a><br>")
         return render(request, 'students/student_form.html', {'form': form})
 
 class StudentUpdateView(View):

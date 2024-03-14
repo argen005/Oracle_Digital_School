@@ -1,3 +1,5 @@
+from django.contrib.auth.base_user import BaseUserManager
+from django.contrib.auth.hashers import check_password
 from django.contrib.auth.models import AbstractUser
 from django.core.mail import send_mail
 from django.db import models
@@ -36,8 +38,9 @@ def send_email(sender, instance, created, **kwargs):
 
 class Teacher(AbstractUser):
     phone = models.CharField(verbose_name='Номер телефона', max_length=20, unique=True)
-    class_ = models.CharField(verbose_name='Класс', max_length=10)
+    class_number = models.CharField(verbose_name='Класс', max_length=10)
     subject = models.CharField(verbose_name='Предмет', max_length=50)
+
 
     def __str__(self):
         return self.username
@@ -49,7 +52,7 @@ class Teacher(AbstractUser):
 
 class ClassRoom(models.Model):
     name = models.CharField(max_length=100)
-    teacher = models.OneToOneField('Teacher', on_delete=models.CASCADE, related_name='ClassRoom')
+    teacher = models.OneToOneField('Teacher', on_delete=models.CASCADE, related_name='classroom')
     students = models.ManyToManyField('Student', related_name='classes')
 
     class Meta:
